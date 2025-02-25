@@ -40,5 +40,18 @@ export default function QueryProcessor(query: string): string {
     return numbers ? String(Number(numbers[0]) * Number(numbers[1])) : "0";
   }  
 
+  if (/prime/i.test(query)) {
+    const numbers = query.match(/\d+/g);
+    const isPrime = (num: number): boolean => {
+      if (num < 2) return false;
+      for (let i = 2; i * i <= num; i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    };
+    const result = numbers ? numbers.filter(n => isPrime(Number(n))) : [];
+    return result.length ? result.join(", ") : "None";
+  }  
+  
   return "";
 }

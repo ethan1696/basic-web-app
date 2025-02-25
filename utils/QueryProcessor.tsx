@@ -58,10 +58,10 @@ export default function QueryProcessor(query: string): string {
     return numbers ? String(Number(numbers[0]) - Number(numbers[1])) : "0";
   }  
 
-  if (/(\d+)\s*to\s*the\s*power\s*of\s*(\d+)/i.test(query)) {
+  if (/(\d+)\s*to\s*the\s*power\s*of\s*\d+/i.test(query)) {
     const numbers = query.match(/\d+/g);
     return numbers ? String(Math.pow(Number(numbers[0]), Number(numbers[1]))) : "0";
-  }
+  }  
   
   if (/(\d+\s*plus\s*){2,}\d+/i.test(query)) {
     const numbers = query.match(/\d+/g);

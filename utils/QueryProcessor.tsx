@@ -15,10 +15,7 @@ export default function QueryProcessor(query: string): string {
     return "ethanwan";
   }
 
-  if (/(\d+)\s*plus\s+(\d+)/i.test(query)) {
-    const numbers = query.match(/\d+/g);
-    return numbers ? String(Number(numbers[0]) + Number(numbers[1])) : "0";
-  }
+
   
   if (/largest.*\d+/i.test(query)) {
     const numbers = query.match(/\d+/g);
@@ -68,5 +65,10 @@ export default function QueryProcessor(query: string): string {
     console.log(numbers)
     return numbers ? String(numbers.reduce((a, b) => a + b, 0)) : "0";
   }  
+
+  if (/(\d+)\s*plus\s+(\d+)/i.test(query)) {
+    const numbers = query.match(/\d+/g);
+    return numbers ? String(Number(numbers[0]) + Number(numbers[1])) : "0";
+  }
   return "";
 }

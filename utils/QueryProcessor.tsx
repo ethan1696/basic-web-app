@@ -25,5 +25,15 @@ export default function QueryProcessor(query: string): string {
     return numbers ? String(Math.max(...numbers.map(Number))) : "0";
   }   
 
+  if (query.toLowerCase().includes("square") && query.toLowerCase().includes("cube")) {
+    const numbers = query.match(/\d+/g);
+    const result = numbers ? numbers.filter(n => {
+      const num = Number(n);
+      const root = Math.round(Math.pow(num, 1/6)); // A number is both a square and a cube if it's a sixth power
+      return root ** 6 === num;
+    }) : [];
+    return result.length ? result.join(", ") : "None";
+  }  
+
   return "";
 }

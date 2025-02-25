@@ -32,7 +32,7 @@ export default function QueryProcessor(query: string): string {
       const root = Math.round(Math.pow(num, 1/6)); // A number is both a square and a cube if it's a sixth power
       return root ** 6 === num;
     }) : [];
-    return result.length ? result.join(", ") : "None";
+    return result.length ? result[0] : "None";
   }
 
   if (/(\d+)\s*multiplied\s*by\s*(\d+)/i.test(query)) {
@@ -50,7 +50,7 @@ export default function QueryProcessor(query: string): string {
       return true;
     };
     const result = numbers ? numbers.filter(n => isPrime(Number(n))) : [];
-    return result.length ? result.join(", ") : "None";
+    return result.length ? result[0] : "None";
   }  
   
   return "";

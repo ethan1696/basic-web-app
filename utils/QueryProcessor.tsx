@@ -64,8 +64,9 @@ export default function QueryProcessor(query: string): string {
   }  
   
   if (/(\d+\s*plus\s*){2,}\d+/i.test(query)) {
-    const numbers = query.match(/\d+/g)?.map(Number) || [];
-    return String(numbers.reduce((a, b) => a + b, 0));
+    const numbers = query.match(/\d+/g)?.map(Number);
+    console.log(numbers)
+    return numbers ? String(numbers.reduce((a, b) => a + b, 0)) : "0";
   }  
   return "";
 }

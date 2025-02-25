@@ -33,4 +33,12 @@ describe("QueryProcessor", () => {
             "ethanwan"
         ));
     })
+
+    test('aaaa', () => {
+        const query = "What is 38 plus 57 plus 62?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "157"
+        ));
+    })
 });

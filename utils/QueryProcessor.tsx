@@ -52,6 +52,9 @@ export default function QueryProcessor(query: string): string {
     const result = numbers ? numbers.filter(n => isPrime(Number(n))) : [];
     return result.length ? result[0] : "None";
   }  
-  
+  if (/(\d+)\s*minus\s*(\d+)/i.test(query)) {
+    const numbers = query.match(/\d+/g);
+    return numbers ? String(Number(numbers[0]) - Number(numbers[1])) : "0";
+  }  
   return "";
 }

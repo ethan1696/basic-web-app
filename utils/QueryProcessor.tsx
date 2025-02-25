@@ -15,10 +15,10 @@ export default function QueryProcessor(query: string): string {
     return "ethanwan";
   }
 
-  if (query.match(/\d+/g) != null) {
-    const [num1, num2] = query.match(/\d+/g).map(Number);
-    return num1 + num2;
-  }
+  if (query.toLowerCase().includes("plus")) {
+    const numbers = query.match(/\d+/g);
+    return numbers ? String(Number(numbers[0]) + Number(numbers[1])) : "0";
+  }  
 
   return "";
 }

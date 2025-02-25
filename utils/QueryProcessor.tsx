@@ -18,7 +18,12 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("plus")) {
     const numbers = query.match(/\d+/g);
     return numbers ? String(Number(numbers[0]) + Number(numbers[1])) : "0";
-  }  
+  }
+
+  if (query.toLowerCase().includes("largest")) {
+    const numbers = query.match(/\d+/g);
+    return numbers ? String(Math.max(...numbers.map(Number))) : "0";
+  }   
 
   return "";
 }

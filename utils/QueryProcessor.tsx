@@ -15,17 +15,17 @@ export default function QueryProcessor(query: string): string {
     return "ethanwan";
   }
 
-  if (query.toLowerCase().includes("plus")) {
+  if (/(\d+)\s*plus\s+(\d+)/i.test(query)) {
     const numbers = query.match(/\d+/g);
     return numbers ? String(Number(numbers[0]) + Number(numbers[1])) : "0";
   }
-
-  if (query.toLowerCase().includes("largest")) {
+  
+  if (/largest.*\d+/i.test(query)) {
     const numbers = query.match(/\d+/g);
     return numbers ? String(Math.max(...numbers.map(Number))) : "0";
-  }   
-
-  if (query.toLowerCase().includes("square") && query.toLowerCase().includes("cube")) {
+  }
+  
+  if (/square.*cube|cube.*square/i.test(query)) {
     const numbers = query.match(/\d+/g);
     const result = numbers ? numbers.filter(n => {
       const num = Number(n);
@@ -33,6 +33,11 @@ export default function QueryProcessor(query: string): string {
       return root ** 6 === num;
     }) : [];
     return result.length ? result.join(", ") : "None";
+  }
+
+  if (/(\d+)\s*multiplied\s*by\s*(\d+)/i.test(query)) {
+    const numbers = query.match(/\d+/g);
+    return numbers ? String(Number(numbers[0]) * Number(numbers[1])) : "0";
   }  
 
   return "";
